@@ -1,0 +1,42 @@
+/*
+ * Instance header file for ATSAML21J18BU
+ *
+ * Copyright (c) 2025 Microchip Technology Inc. and its subsidiaries.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+/* file generated from device description file (ATDF) version 2023-04-12T13:57:36Z */
+#ifndef _SAML21_SUPC_INSTANCE_
+#define _SAML21_SUPC_INSTANCE_
+
+
+/* ========== Instance Parameter definitions for SUPC peripheral ========== */
+#define SUPC_BOD12_CALIB_MSB                     (5)
+#define SUPC_BOD33_CALIB_MSB                     (5)
+#define SUPC_HAS_BBPS_REG                        (1)        /* BBPS register is present */
+#define SUPC_HAS_BKIN_REG                        (1)        /* BKIN register is present */
+#define SUPC_HAS_BKOUT_REG                       (1)        /* BKOUT register is present */
+#define SUPC_HAS_BOD33_REG_NAME                  (1)        /* Name of BOD register is BOD33 */
+#define SUPC_HAS_LPEFF_BIT                       (1)        /* LPEFF bit is present */
+#define SUPC_HAS_RUNBKUP_BIT                     (1)        /* RUNBKUP bit is present */
+#define SUPC_HAS_SEL_BIT                         (1)        /* SEL bit is present */
+#define SUPC_HAS_STDBYPL0_BIT                    (1)        /* STDBYPL0 bit is present */
+#define SUPC_HAS_VMON_BIT                        (1)        /* VMON bit is present */
+#define SUPC_INSTANCE_ID                         (5)
+#define SUPC_OUT_NUM_MSB                         (1)        /* MSB of backup output pad Number */
+
+#endif /* _SAML21_SUPC_INSTANCE_ */
