@@ -3,6 +3,7 @@
 #written by Sid L., 2025-12-18
 
 from glob import glob
+from pathlib import Path
 import os
 import re
 
@@ -79,8 +80,13 @@ for full_filename in glob('./**/include/sam*.h', recursive=True):
 		filedata = f.read()
 		cpu_freq = GetFileParameterNumber(filedata, filedata.find("__SYSTEM_CLOCK"), " (")
 
+	# Get the processor family to add to the #define list, making it easy to port code based on the family
+	family = str(list(Path(filepath).parents)[-2])
+	fam_suf = family.find("_")
+	if (fam_suf != -1):
+		family = family[: fam_suf]
 
-	print(part_number + ": FLASH: " + str(flash_size) + ", RAM: " + str(ram_size) + ", " + cpu_type + " @ " + str(cpu_freq))
+	print("Family: " + family + ": " + part_number + ": FLASH: " + str(flash_size) + ", RAM: " + str(ram_size) + ", " + cpu_type + " @ " + str(cpu_freq))
 	if (flash_size != 0 and ram_size != 0 and cpu_type != ""):
 		# we have the necessary specs: generate an output board definition
 
@@ -99,7 +105,7 @@ for full_filename in glob('./**/include/sam*.h', recursive=True):
 			f.write("    \"cpu\": \"{}\",\n".format(cpu_type))										#     "cpu": "cortex-m0plus",
 			f.write("    \"f_cpu\": \"{}L\",\n".format(cpu_freq))									#     "f_cpu": "48000000L",
 			f.write("    \"mcu\": \"{}\",\n".format(part_number))									#     "mcu": "samc21e17a",
-			f.write("    \"extra_flags\": \"-D__{}__\"\n".format(part_number.upper()))				#     "extra_flags": "-D__SAMC21E17A__"
+			f.write("    \"extra_flags\": \"-D__{}__ -D__{}__\"\n".format(part_number.upper(), family.upper()))		#     "extra_flags": "-D__SAMC21E17A__ -D__SAMC21__"
 			f.write("  },\n")																		#   },
 			f.write("  \"debug\": {\n")																#   "debug": {
 			f.write("    \"jlink_device\": \"AT{}\",\n".format(part_number.upper()))				#     "jlink_device": "ATSAMC21E17",
